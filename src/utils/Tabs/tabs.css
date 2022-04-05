@@ -1,0 +1,25 @@
+.game_class {
+    max-width: 280px;
+    height: 500px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
+}
+.game_class_image{
+    height: 80px;
+    width: 80px;
+}
+.game_class_content{
+
+    /*background-color: #7b8cb6;*/
+}
+.tabs_class_title {
+    text-align: center;
+    color: #964545;
+}
+.class_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

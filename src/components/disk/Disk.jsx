@@ -6,6 +6,8 @@ import './disk.css'
 import Popup from "./Popup";
 import {setCurrentDir, setFileView, setPopupDisplay} from "../../reducers/fileReducer";
 import Uploader from "./uploader/Uploader";
+import {Button} from "@mui/material";
+import {AddCircleOutline, ArrowBack} from "@mui/icons-material";
 
 const Disk = () => {
     const dispatch = useDispatch()
@@ -64,11 +66,28 @@ const Disk = () => {
     return ( !dragEnter ?
             <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
                 <div className="disk__btns">
-                    <button className="disk__back" onClick={() => backClickHandler()}>Назад</button>
-                    <button className="disk__create" onClick={() => showPopupHandler()}>Создать папку</button>
+                    <Button
+                        variant="outlined"
+                        startIcon={<ArrowBack />}
+                        onClick={() => backClickHandler()}
+                    >
+                        Назад
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        startIcon={<AddCircleOutline/>}
+                        onClick={() => showPopupHandler()}
+                    >
+                        Создать папку
+                    </Button>
                     <div className="disk__upload">
                         <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
-                        <input multiple={true} onChange={(event)=> fileUploadHandler(event)} type="file" id="disk__upload-input" className="disk__upload-input"/>
+                        <input multiple={true}
+                               onChange={(event)=> fileUploadHandler(event)}
+                               type="file"
+                               id="disk__upload-input"
+                               className="disk__upload-input"
+                        />
                     </div>
                     <select value={sort}
                             onChange={(e) => setSort(e.target.value)}
@@ -77,15 +96,26 @@ const Disk = () => {
                         <option value="type">По типу</option>
                         <option value="date">По дате</option>
                     </select>
-                    <button className="disk__plate" onClick={() => dispatch(setFileView('plate'))}/>
-                    <button className="disk__list" onClick={() => dispatch(setFileView('list'))}/>
+                    <Button
+                        className="disk__plate"
+                        onClick={() => dispatch(setFileView('plate'))}
+                    />
+                    <Button
+                        className="disk__list"
+                        onClick={() => dispatch(setFileView('list'))}
+                    />
                 </div>
                 <FileList/>
                 <Popup/>
                 <Uploader/>
             </div>
             :
-            <div className="drop-area" onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
+            <div className="drop-area"
+                 onDrop={dropHandler}
+                 onDragEnter={dragEnterHandler}
+                 onDragLeave={dragLeaveHandler}
+                 onDragOver={dragEnterHandler}
+            >
                 Перетащите файлы сюда
             </div>
     );

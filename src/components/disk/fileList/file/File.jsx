@@ -6,6 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {pushToStack, setCurrentDir} from "../../../../reducers/fileReducer";
 import {deleteFile, downloadFile} from "../../../../actions/file";
 import sizeFormat from "../../../../utils/sizeFormat";
+import {Button} from "@mui/material";
+import DeleteIcon  from '@mui/icons-material/Delete';
+import {Download} from "@mui/icons-material";
 
 const File = ({file}) => {
 const dispatch = useDispatch()
@@ -36,20 +39,47 @@ if (fileView === 'list') {
             <div className="file__name">{file.name}</div>
             <div className="file__size">{sizeFormat(file.size)}</div>
             {file.type !== 'dir' &&
-                <button onClick={(e) => downloadClickHandler(e)} className="file__btn file__download">download</button>}
-            <button onClick={(e) => deleteClickHandler(e)} className="file__btn file__delete">delete</button>
+                <Button
+                    variant="outlined"
+                    size={"small"}
+                    onClick={(e) => downloadClickHandler(e)}
+                    startIcon={<Download/>}
+                >
+                    download
+                </Button>}
+            <Button
+                size={"small"}
+                onClick={(e) => deleteClickHandler(e)}
+                variant="outlined"
+                startIcon={<DeleteIcon/>}
+            >
+                delete
+            </Button>
         </div>
     );
 }
 if (fileView === 'plate') {
     return (
         <div className='file-plate' onClick={() => openDirHandler(file)}>
-            <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file-plate__img"/>
+            <img
+                src={file.type === 'dir' ? dirLogo : fileLogo}
+                alt="" className="file-plate__img"
+            />
             <div className="file-plate__name">{file.name}</div>
             <div className="file-plate__btns">
                 {file.type !== 'dir' &&
-                    <button onClick={(e) => downloadClickHandler(e)} className="file-plate__btn file-plate__download">download</button>}
-                <button onClick={(e) => deleteClickHandler(e)} className="file-plate__btn file-plate__delete">delete</button>
+                    <Button
+                        size={"small"}
+                        onClick={(e) => downloadClickHandler(e)}
+                    >
+                        download
+                    </Button>}
+                <Button
+                    size={"small"}
+                    onClick={(e) => deleteClickHandler(e)}
+                >
+                    delete
+                </Button>
             </div>
         </div>
     );

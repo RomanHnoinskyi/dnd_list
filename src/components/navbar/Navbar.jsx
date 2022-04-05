@@ -8,6 +8,8 @@ import {getFiles, searchFiles} from "../../actions/file";
 import {showLoader} from "../../reducers/appReducer";
 import avatarLogo from '../../assets/img/avatar.svg'
 import {API_URL} from "../../config";
+import {Button} from "@mui/material";
+
 
 const Navbar = () => {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -38,6 +40,7 @@ const Navbar = () => {
             <div className="container">
                 <img src={Logo} alt="" className="navbar__logo"/>
                 <div className="navbar__header">Persona List</div>
+                <Button variant="outlined" ><NavLink to="/librium"> Библиотека</NavLink></Button>
                 {isAuth && <input
                     value={searchName}
                     onChange={e => searchChangeHandler(e)}
@@ -46,7 +49,7 @@ const Navbar = () => {
                     placeholder="Название файла..."/>}
                 {!isAuth && <div className="navbar__login"><NavLink to="/login">Войти</NavLink></div> }
                 {!isAuth && <div className="navbar__registration"><NavLink to="/registration">Регистрация</NavLink></div> }
-                {isAuth && <div className="navbar__login" onClick={() => dispatch(logout()) }>Выход</div> }
+                {isAuth && <Button variant="outlined" color="error" onClick={() => dispatch(logout()) }>Выход</Button> }
                 {isAuth && <NavLink to='/profile'>
                     <img className="navbar__avatar" src={avatar} alt=""/>
                 </NavLink>}
