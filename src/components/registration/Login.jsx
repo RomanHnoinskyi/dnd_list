@@ -4,6 +4,7 @@ import './registration.css'
 import Input from "../../utils/input/input";
 import {useDispatch} from "react-redux";
 import {login} from "../../actions/user";
+import {Button} from "@mui/material";
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -25,12 +26,13 @@ const Login = () => {
                 type="password"
                 placeholder="Введите пароль..."
             />
-            <button
-                className="registration__btn"
+            <Button
+                variant="contained"
+                color="success"
                 onClick={() => dispatch(login(email, password))}
             >
                 Войти
-            </button>
+            </Button>
         </div>
     );
 };

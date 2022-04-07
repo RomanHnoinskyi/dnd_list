@@ -9,6 +9,7 @@ import {showLoader} from "../../reducers/appReducer";
 import avatarLogo from '../../assets/img/avatar.svg'
 import {API_URL} from "../../config";
 import {Button} from "@mui/material";
+import {ArrowBack, BookOutlined, CasinoOutlined} from "@mui/icons-material";
 
 
 const Navbar = () => {
@@ -38,21 +39,39 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="container">
-                <img src={Logo} alt="" className="navbar__logo"/>
-                <div className="navbar__header">Persona List</div>
-                <Button variant="outlined" ><NavLink to="/librium"> Библиотека</NavLink></Button>
-                {isAuth && <input
-                    value={searchName}
-                    onChange={e => searchChangeHandler(e)}
-                    className='navbar__search'
-                    type="text"
-                    placeholder="Название файла..."/>}
-                {!isAuth && <div className="navbar__login"><NavLink to="/login">Войти</NavLink></div> }
-                {!isAuth && <div className="navbar__registration"><NavLink to="/registration">Регистрация</NavLink></div> }
-                {isAuth && <Button variant="outlined" color="error" onClick={() => dispatch(logout()) }>Выход</Button> }
-                {isAuth && <NavLink to='/profile'>
-                    <img className="navbar__avatar" src={avatar} alt=""/>
-                </NavLink>}
+                    <div>
+                        <img src={Logo} alt="" className="navbar__logo"/>
+                        <div className="navbar__header">Persona List</div>
+                    </div>
+                    <div>
+                        <Button
+                            variant="outlined"
+                            startIcon={<BookOutlined />}
+                        >
+                            <NavLink to="/librium"> Библиотека</NavLink></Button>
+                        <Button
+                            variant="outlined"
+                            startIcon={<CasinoOutlined />}
+                        >
+                            <NavLink to="/dice"> Кубы</NavLink></Button>
+                    </div>
+                    <div>
+                        {isAuth && <input
+                            value={searchName}
+                            onChange={e => searchChangeHandler(e)}
+                            className='navbar__search'
+                            type="text"
+                            placeholder="Название файла..."/>}
+                        {!isAuth && <Button variant="contained" color="success"> <NavLink to="/login">Войти</NavLink></Button> }
+                        {!isAuth && <Button variant="outlined" color="secondary"><NavLink to="/registration">Регистрация</NavLink></Button> }
+                        {isAuth && <Button variant="contained" color="error" onClick={() => dispatch(logout()) }>Выход</Button> }
+                        {isAuth && <NavLink to='/profile'>
+                            <img className="navbar__avatar" src={avatar} alt=""/>
+                        </NavLink>}
+                    </div>
+
+
+
             </div>
         </div>
     );

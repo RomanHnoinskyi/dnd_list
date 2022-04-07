@@ -11,8 +11,9 @@ import bard from '../../assets/img/class/bard.jpg'
 import druid from '../../assets/img/class/druid.jpg'
 import paladin from '../../assets/img/class/paladin.jpg'
 import scaut from '../../assets/img/class/scaut.jpg'
-import Paladin from "../../components/librarium/class/paladin.js";
 import {NavLink} from "react-router-dom";
+import FullScreenDialog from "../Dialog/Dialog";
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -100,14 +101,8 @@ export default function VerticalTabs() {
                     превращает набожного воина в благослвенного героя.</p>
 
             </CardContent>
-            <Button
-                variant="contained"
-                color="warning"
-            >
-                <NavLink to='/librium/paladin'>
-                    Подробнее
-                </NavLink>
-            </Button>
+            <Button variant="contained"><NavLink to='/paladin'>Подробнее</NavLink></Button>
+            {/*//dialog*/}
         </Card>
 
 
@@ -115,7 +110,7 @@ export default function VerticalTabs() {
 
             <CardContent className="game_class_content" >
                 <img className="game_class_image" src={bard}
-                     alt="paladin"
+                     alt="bard"
                 />
                 <b>   BARD</b>
                 <p>Неважно, кем является бард: учёным, скальдом или проходимцем;
@@ -127,8 +122,9 @@ export default function VerticalTabs() {
             <Button
                 variant="contained"
                 color="warning"
+                onClick={() => FullScreenDialog()}
             >
-                <NavLink to={Paladin}>Подробнее</NavLink>
+                Детально
             </Button>
         </Card>
 
@@ -150,7 +146,9 @@ export default function VerticalTabs() {
                 variant="contained"
                 color="warning"
             >
-                <a href={Paladin}>Подробнее</a>
+                <NavLink to='/librium/class/scaut/scaut.js'>
+                    Подробнее
+                </NavLink>
             </Button>
         </Card>
 
@@ -172,7 +170,7 @@ export default function VerticalTabs() {
                             <Button
                                 variant="contained"
                             >
-                                <NavLink to={Paladin}>Подробнее</NavLink>
+                                <NavLink to="/librium/paladin"> Подробнее</NavLink>
                             </Button>
                         </Card>
 

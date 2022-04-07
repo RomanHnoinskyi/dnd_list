@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Input from "../../utils/input/input";
 import "./registration.css"
 import {registration} from "../../actions/user";
+import {Button} from "@mui/material";
 
 const Registration = () => {
     const [email, setEmail] = useState('')
@@ -21,12 +22,13 @@ const Registration = () => {
                 type="password"
                 placeholder="введите пароль"
             />
-            <button
-                className="registration__btn"
+            <Button
+                variant="contained"
+                color="secondary"
                 onClick={() => registration(email,password)}
             >
                 Зарегистрироваться
-            </button>
+            </Button>
         </div>
     );
 };
