@@ -39,11 +39,9 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="container">
-                    <div>
+
                         <img src={Logo} alt="" className="navbar__logo"/>
-                        <div className="navbar__header">Persona List</div>
-                    </div>
-                    <div>
+                        <div className="navbar__header"><NavLink to="/">Persona List</NavLink> </div>
                         <Button
                             variant="outlined"
                             startIcon={<BookOutlined />}
@@ -54,21 +52,22 @@ const Navbar = () => {
                             startIcon={<CasinoOutlined />}
                         >
                             <NavLink to="/dice"> Кубы</NavLink></Button>
-                    </div>
-                    <div>
+
+
                         {isAuth && <input
                             value={searchName}
                             onChange={e => searchChangeHandler(e)}
                             className='navbar__search'
                             type="text"
                             placeholder="Название файла..."/>}
+                        <img className="navbar__avatar" src={avatar} alt=""/>
                         {!isAuth && <Button variant="contained" color="success"> <NavLink to="/login">Войти</NavLink></Button> }
                         {!isAuth && <Button variant="outlined" color="secondary"><NavLink to="/registration">Регистрация</NavLink></Button> }
                         {isAuth && <Button variant="contained" color="error" onClick={() => dispatch(logout()) }>Выход</Button> }
                         {isAuth && <NavLink to='/profile'>
-                            <img className="navbar__avatar" src={avatar} alt=""/>
+
                         </NavLink>}
-                    </div>
+
 
 
 

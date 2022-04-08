@@ -6,7 +6,7 @@ import './disk.css'
 import Popup from "./Popup";
 import {setCurrentDir, setFileView, setPopupDisplay} from "../../reducers/fileReducer";
 import Uploader from "./uploader/Uploader";
-import {Button} from "@mui/material";
+import {Button, Select} from "@mui/material";
 import {AddCircleOutline, ArrowBack} from "@mui/icons-material";
 
 const Disk = () => {
@@ -89,13 +89,13 @@ const Disk = () => {
                                className="disk__upload-input"
                         />
                     </div>
-                    <select value={sort}
+                    <Select value={sort}
                             onChange={(e) => setSort(e.target.value)}
                             className='disk__select'>
                         <option value="name">По имени</option>
                         <option value="type">По типу</option>
                         <option value="date">По дате</option>
-                    </select>
+                    </Select>
                     <Button
                         className="disk__plate"
                         onClick={() => dispatch(setFileView('plate'))}

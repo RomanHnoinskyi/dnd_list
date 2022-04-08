@@ -1,0 +1,17 @@
+.dice_container {
+    width: 800px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+.dice_dice {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icons_dice {
+    width: 48px;
+    height: 48px;
+}
