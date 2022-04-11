@@ -9,7 +9,7 @@ import {showLoader} from "../../reducers/appReducer";
 import avatarLogo from '../../assets/img/avatar.svg'
 import {API_URL} from "../../config";
 import {Button} from "@mui/material";
-import {ArrowBack, BookOutlined, CasinoOutlined} from "@mui/icons-material";
+import {ArchitectureOutlined, ArrowBack, BookOutlined, CasinoOutlined} from "@mui/icons-material";
 
 
 const Navbar = () => {
@@ -52,6 +52,9 @@ const Navbar = () => {
                             startIcon={<CasinoOutlined />}
                         >
                             <NavLink to="/dice"> Кубы</NavLink></Button>
+                <Button variant="outlined" startIcon={<ArchitectureOutlined/>}>
+                    <NavLink to="/blank"> создание персонажа</NavLink>
+                </Button>
 
 
                         {isAuth && <input

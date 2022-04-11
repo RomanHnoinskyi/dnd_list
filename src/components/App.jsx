@@ -12,6 +12,7 @@ import Librium from "./librarium/librium";
 import Paladin from "./librarium/class/paladin/paladin";
 import Scaut from "./librarium/class/scaut/scaut"
 import dice from "./dice/Dice";
+import Blank from "./blank/blank";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -38,6 +39,7 @@ function App() {
                             <Route path="/dice" component={dice}/>
                             <Route path="/paladin" component={Paladin}/>
                             <Route exact path="/librium/class/scaut" component={Scaut}/>
+                            <Route path="/blank" component={Blank}/>
                             <Redirect to='/login'/>
                         </Switch>
                         :
@@ -47,6 +49,7 @@ function App() {
                             <Route path="/librium" component={Librium}/>
                             <Route path="/dice" component={dice}/>
                             <Route path="/paladin" component={Paladin}/>
+                            <Route path="/blank" component={Blank}/>
                             <Route exact path="/librium/class/scaut" component={Scaut}/>
                             <Redirect to="/"/>
                         </Switch>

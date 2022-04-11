@@ -1,0 +1,32 @@
+.blank {
+
+    width: 1024px;
+    height: 900px;
+    background-color: papayawhip;
+    margin: 20px;
+}
+.blank_bio {
+    display: flex;
+    flex-direction: row;
+}
+.blank_row {
+    display: flex;
+    flex-direction: row;
+}
+.blank_statistic_tabs {
+    display: flex;
+    flex-direction: row;
+}
+.blank_statistic {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 500px;
+    border: #506a8f solid 2px;
+    padding: 5px;
+}
+.blank_statistic_small {
+display: flex;
+    flex-direction: column;
+}
