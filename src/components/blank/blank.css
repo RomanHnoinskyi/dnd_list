@@ -1,13 +1,15 @@
 .blank {
 
     width: 1024px;
-    height: 900px;
+    height: fit-content;
     background-color: papayawhip;
     margin: 20px;
 }
 .blank_bio {
     display: flex;
     flex-direction: row;
+    border: #506a8f solid 2px;
+    border-radius: 10px;
 }
 .blank_row {
     display: flex;
@@ -21,12 +23,77 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 200px;
-    height: 500px;
+    width: 150px;
+    height: 590px;
     border: #506a8f solid 2px;
-    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+
 }
 .blank_statistic_small {
 display: flex;
     flex-direction: column;
+    width: 320px;
+    height: 50px;
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+    margin: 5px;
+}
+.stat {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    align-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+.spas {
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    height: 300px;
+    margin: 5px;
+}
+.cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navik {
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+    width: 170px;
+    margin: 5px;
+}
+.heals {
+    border: #506a8f solid 2px;
+    margin: 5px;
+    border-radius: 10px;
+}
+.lang {
+    margin: 5px;
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+}
+.attack {
+    margin: 5px;
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+}
+.attack_item {
+    justify-content: space-between;
+}
+.stat_text {
+    width: 60px;
+}
+.items {
+    margin: 5px;
+    border: #506a8f solid 2px;
+    border-radius: 10px;
 }
