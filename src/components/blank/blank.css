@@ -1,5 +1,4 @@
 .blank {
-
     width: 1024px;
     height: fit-content;
     background-color: papayawhip;
@@ -22,9 +21,9 @@
 .blank_statistic {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 150px;
-    height: 590px;
+    height: 700px;
     border: #506a8f solid 2px;
     border-radius: 10px;
     margin: 5px;
@@ -52,7 +51,7 @@ display: flex;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: 170px;
+    width: 180px;
     height: 300px;
     margin: 5px;
 }
@@ -60,11 +59,14 @@ display: flex;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+    margin:  0px 25px 0px 25px;
 }
 .navik {
     border: #506a8f solid 2px;
     border-radius: 10px;
-    width: 170px;
+    width: 180px;
     margin: 5px;
 }
 .heals {
@@ -96,4 +98,13 @@ display: flex;
     margin: 5px;
     border: #506a8f solid 2px;
     border-radius: 10px;
+}
+.spas_text {
+    width: 50px;
+}
+.bm_text {
+    width: 30px;
+}
+.nav_text {
+    width: 20px;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Checkbox, Input, MenuItem, Radio, TextField} from "@mui/material";
+import { Checkbox, Input, MenuItem, Radio, TextField} from "@mui/material";
 import "./blank.css"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -10,7 +10,7 @@ import {instruments, klass, langs, rassas} from "../../assets/constant/constant"
 const Blank = () => {
 
     const [rassa, setRassa] = React.useState('человек');
-    const [clas, setClas] = React.useState('воин');
+    const [clas, setClas] = React.useState('бард');
     const [lang, setLang] = React.useState('общий')
     const [instrument, setInstrument] = React.useState('пивовара')
     const [selectedValue, setSelectedValue] = React.useState();
@@ -20,6 +20,36 @@ const Blank = () => {
     const [wisdom, setWisdom] = React.useState()
     const [intelligence, setIntelligence] = React.useState()
     const [charisma, setCharisma] = React.useState()
+    const [BM, setBM] = React.useState(2)
+    const [level, setLevel] = React.useState(1)
+    const [spasstrtrain, setspasstrtrain] = React.useState(false);
+    const [spascotrain, setspascotrain] = React.useState(false);
+    const [spasdextrain, setspasdextrain] = React.useState(false);
+    const [spasinttrain, setspasinttrain] = React.useState(false);
+    const [spaswistrain, setspaswistrain] = React.useState(false);
+    const [spaschatrain, setspaschatrain] = React.useState(false);
+
+    const [expiriens, setExpiriens] = React.useState(0)
+
+    const handleChangespascotrain  = (event) => {
+        setspascotrain(event.target.checked);
+    };
+    const handleChangespasstrtrain  = (event) => {
+        setspasstrtrain(event.target.checked);
+    };
+    const handleChangespasdextrain  = (event) => {
+        setspasstrtrain(event.target.checked);
+    };
+    const handleChangespasinttrain  = (event) => {
+        setspasinttrain(event.target.checked);
+    };
+    const handleChangespaswistrain  = (event) => {
+        setspaswistrain(event.target.checked);
+    };
+    const handleChangespaschatrain  = (event) => {
+        setspaschatrain(event.target.checked);
+    };
+
 
     const handleChangeras = (event) => {
         setRassa(event.target.value);
@@ -37,12 +67,32 @@ const Blank = () => {
         setSelectedValue(event.target.value);
     };
 
+
+
         let  modStrength = Math.floor((strength -10)/2)
         let  modConstitution = Math.floor((constitution -10)/2)
         let  modDexterity = Math.floor((dexterity -10)/2)
         let  modWisdom = Math.floor((wisdom -10)/2)
         let  modIntelligence = Math.floor((intelligence -10)/2)
         let  modCharisma = Math.floor((charisma -10)/2)
+
+        let spasstr = modStrength + (BM*spasstrtrain)
+        let spascon = modConstitution + (BM*spascotrain)
+        let spasdex = modDexterity + (BM*spasdextrain)
+        let spasint = modIntelligence + (BM*spasinttrain)
+        let spaswis = modWisdom + (BM*spaswistrain)
+        let spascha = modCharisma + (BM*spaschatrain)
+
+
+    //     if ( expiriens < 300) {
+    //         setLevel = 1
+    //     } if (300 <= expiriens < 900) {
+    //         setLevel = 2
+    // } if (900 <= expiriens < 2700){
+    //          setLevel =3
+    // }
+
+
 
     return (
         <div className="blank">
@@ -82,7 +132,7 @@ const Blank = () => {
                 </div>
                 <div>
                     <TextField
-                        id="level"
+                       value = {level}
                         label="Уровень"
                         type="number"
                         variant="standard"
@@ -94,6 +144,7 @@ const Blank = () => {
                         label="Опыт"
                         type="number"
                         variant="standard"
+                        value={expiriens}
                     >
                         Опыт
                     </TextField>
@@ -191,11 +242,9 @@ const Blank = () => {
                         >
                         </TextField>
                     </div>
-
                 </div>
-
                 <div className="lang">
-                    <div>
+                    <div className="col">
                         языки
                         <TextField
                             id="standard-select-currency"
@@ -211,7 +260,7 @@ const Blank = () => {
                             ))}
                         </TextField>
                     </div>
-                    <div>
+                    <div className="col">
                         инструменты
                         <TextField
                             id="standard-select-currency"
@@ -235,28 +284,77 @@ const Blank = () => {
             <div>
                 <div className="spas">
                     спасы
-                    <div>
-                        <Checkbox defaultChecked size="small" />
+                    <div className="blank_row">
+                        <Checkbox
+                            checked={spasstrtrain}
+                            onChange={handleChangespasstrtrain}
+                            defaultChecked size="small"
+                        />
+                        <TextField
+                            value={spasstr}
+                            className="spas_text"
+                            variant="standard"
+                        />
                         сила
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={spascotrain}
+                                  onChange={handleChangespascotrain}
+                        />
+                        <TextField
+                            value={spascon}
+                            className="spas_text"
+                            variant="standard"
+                        />
                         тело
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={spasdextrain}
+                                  onChange={handleChangespasdextrain}
+                        />
+                        <TextField
+                            value={spasdex}
+                            className="spas_text"
+                            variant="standard"
+                        />
                         ловкость
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={spasinttrain}
+                                  onChange={handleChangespasinttrain}
+                        />
+                        <TextField
+                            value={spasint}
+                            className="spas_text"
+                            variant="standard"
+                        />
                         интелект
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={spaswistrain}
+                                  onChange={handleChangespaswistrain}
+                        />
+                        <TextField
+                            value={spaswis}
+                            className="spas_text"
+                            variant="standard"
+                        />
                         мудрость
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={spaschatrain}
+                                  onChange={handleChangespaschatrain}
+                        />
+                        <TextField
+                            value={spascha}
+                            className="spas_text"
+                            variant="standard"
+                        />
                         харизма
                     </div>
 
@@ -265,75 +363,165 @@ const Blank = () => {
                     навыки
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        акробатика
+                        <input
+                            value={spascha}
+                            className="nav_text"
+
+                        />
+                        акробатика(лов)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        анализ
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        анализ(инт)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        атлетика
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        атлетика(сил)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        внимание
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        внимание(муд)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        выживание
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        выжив.(муд)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        выступление
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        выст.(хар)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        запугивание
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        запуг.(хар)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        история
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        история(инт)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        ловкость рук
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        лов. рук(лов)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        магия
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        магия(инт)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        медицина
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        медицина(муд)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        обман
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        обман(хар)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        природа
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        природа(муд)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        проницательность
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        прониц.(муд)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        религия
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        религия(инт)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        скрытность
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        скрыт(лов)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        убеждение
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        убежд.(хар)
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small" />
-                        ухо.животн.
+                        <TextField
+                            value={spascha}
+                            className="nav_text"
+                            variant="standard"
+                        />
+                        у.животн.(муд)
                     </div>
                 </div>
             </div>
@@ -343,7 +531,18 @@ const Blank = () => {
             <div className="blank_row">
                 <div className="stat">
                     <h7>БМ</h7>
-                     <p>3</p>
+                    <TextField
+                        variant="standard"
+                        id="BM"
+                        value={BM}
+                        onChange={e => setBM(e.target.value)}
+                        className="bm_text"
+                        size="small"
+                        defaultValue="2"
+                        type="number"
+                    >
+
+                    </TextField>
                 </div>
                 <div className="stat">
                   <h7>Вдохновение</h7>
@@ -355,7 +554,7 @@ const Blank = () => {
                 </div>
                 <div className="stat">
                    <h7>Инициатива</h7>
-                    <p>2</p>
+                    <p>{modDexterity}</p>
                 </div>
                 <div className="stat">
                    <h7>Скорость</h7>
@@ -364,8 +563,10 @@ const Blank = () => {
 
             </div>
                 <div className="heals">
-                    <div>
-                      <h1>HP : 90</h1>
+                    <div className="blank_row">
+                      <h1>HP : </h1>
+                        <TextField
+                            variant="standard" />
 
                     </div>
                     <div>
@@ -418,9 +619,6 @@ const Blank = () => {
                                 inputProps={{ 'aria-label': 'F' }}
                             />
                         </div>
-
-
-
                     </div>
                 </div>
                 <div className="attack">
