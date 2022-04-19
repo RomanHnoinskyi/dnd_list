@@ -29,6 +29,26 @@ const Blank = () => {
     const [spaswistrain, setspaswistrain] = React.useState(false);
     const [spaschatrain, setspaschatrain] = React.useState(false);
 
+    const [navakrobtrain, setnavakrobtrain] = React.useState(false);
+    const [navlovrtrain, setnavlovrtrain] = React.useState(false);
+    const [navsteltrain, setnavsteltrain] = React.useState(false);
+    const [navanaltrain, setnavanaltrain] = React.useState(false);
+    const [navhisttrain, setnavhisttrain] = React.useState(false);
+    const [navmagitrain, setnavmagitrain] = React.useState(false);
+    const [navrelitrain, setnavrelitrain] = React.useState(false);
+    const [navatletrain, setnavatletrain] = React.useState(false);
+    const [navsenstrain, setnavsenstrain] = React.useState(false);
+    const [navsurvtrain, setnavsurvtrain] = React.useState(false);
+    const [navmeditrain, setnavmeditrain] = React.useState(false);
+    const [navnatutrain, setnavnatutrain] = React.useState(false);
+    const [navprontrain, setnavprontrain] = React.useState(false);
+    const [navbeastrain, setnavbeastrain] = React.useState(false);
+    const [navshowtrain, setnavshowtrain] = React.useState(false);
+    const [navsceatrain, setnavsceatrain] = React.useState(false);
+    const [navcheatrain, setnavcheatrain] = React.useState(false);
+    const [navopintrain, setnavopintrain] = React.useState(false);
+
+
     const [expiriens, setExpiriens] = React.useState(0)
 
     const handleChangespascotrain  = (event) => {
@@ -38,7 +58,7 @@ const Blank = () => {
         setspasstrtrain(event.target.checked);
     };
     const handleChangespasdextrain  = (event) => {
-        setspasstrtrain(event.target.checked);
+        setspasdextrain(event.target.checked);
     };
     const handleChangespasinttrain  = (event) => {
         setspasinttrain(event.target.checked);
@@ -49,6 +69,62 @@ const Blank = () => {
     const handleChangespaschatrain  = (event) => {
         setspaschatrain(event.target.checked);
     };
+
+    const handleChangenavakrobtrain  = (event) => {
+        setnavakrobtrain(event.target.checked);
+    };
+    const handleChangenavlovrtrain  = (event) => {
+        setnavlovrtrain(event.target.checked);
+    };
+    const handleChangenavsteltrain  = (event) => {
+        setnavsteltrain(event.target.checked);
+    };
+    const handleChangenavanaltrain  = (event) => {
+        setnavanaltrain(event.target.checked);
+    };
+    const handleChangenavhisttrain  = (event) => {
+        setnavhisttrain(event.target.checked);
+    };
+    const handleChangenavmagitrain  = (event) => {
+        setnavmagitrain(event.target.checked);
+    };
+    const handleChangenavrelitrain  = (event) => {
+        setnavrelitrain(event.target.checked);
+    };
+    const handleChangenavatletrain  = (event) => {
+        setnavatletrain(event.target.checked);
+    };
+    const handleChangenavsenstrain  = (event) => {
+        setnavsenstrain(event.target.checked);
+    };
+    const handleChangenavsurvtrain  = (event) => {
+        setnavsurvtrain(event.target.checked);
+    };
+    const handleChangenavmeditrain  = (event) => {
+        setnavmeditrain(event.target.checked);
+    };
+    const handleChangenavnatutrain  = (event) => {
+        setnavnatutrain(event.target.checked);
+    };
+    const handleChangenavprontrain  = (event) => {
+        setnavprontrain(event.target.checked);
+    };
+    const handleChangenavbeastrain  = (event) => {
+        setnavbeastrain(event.target.checked);
+    };
+    const handleChangenavshowtrain = (event) => {
+        setnavshowtrain(event.target.checked);
+    };
+    const handleChangenavsceatrain  = (event) => {
+        setnavsceatrain(event.target.checked);
+    };
+    const handleChangenavcheatrain  = (event) => {
+        setnavcheatrain(event.target.checked);
+    };
+    const handleChangenavopintrain  = (event) => {
+        setnavopintrain(event.target.checked);
+    };
+
 
 
     const handleChangeras = (event) => {
@@ -84,13 +160,31 @@ const Blank = () => {
         let spascha = modCharisma + (BM*spaschatrain)
 
 
-    //     if ( expiriens < 300) {
-    //         setLevel = 1
-    //     } if (300 <= expiriens < 900) {
-    //         setLevel = 2
-    // } if (900 <= expiriens < 2700){
-    //          setLevel =3
-    // }
+        let akrob = modDexterity +BM*navakrobtrain                   //акробатика
+        let lovruk = modDexterity + BM*navlovrtrain                  //ловкость рук
+        let stels = modDexterity + BM*navsteltrain                   //скрытность
+
+         let analiz = modIntelligence + BM*navanaltrain              //анализ
+         let history = modIntelligence  + BM*navhisttrain           //история
+         let magick = modIntelligence + BM*navmagitrain           //магия
+         let religion = modIntelligence + BM*navrelitrain         //религия
+
+         let atletick = modStrength + BM*navatletrain             //атлетика
+
+         let sensor = modWisdom + BM*navsenstrain                 //внимание
+         let survai = modWisdom + BM*navsurvtrain                  //выживание
+         let medic = modWisdom + BM*navmeditrain                  //медицына
+         let nature = modWisdom + BM*navnatutrain                 //природа
+         let pronic = modWisdom + BM*navprontrain                 //проницательность
+         let beast = modWisdom + BM*navbeastrain                  //уход за животными
+
+         let show = modCharisma + BM*navshowtrain                  //выступление
+         let sceary = modCharisma + BM*navsceatrain               // запугивание
+         let cheat = modCharisma + BM*navcheatrain                 //обман
+         let opinion = modCharisma + BM*navopintrain              //убеждение
+
+
+
 
 
 
@@ -362,162 +456,215 @@ const Blank = () => {
                 <div className="navik">
                     навыки
                     <div>
-                        <Checkbox defaultChecked size="small" />
-                        <input
-                            value={spascha}
+                        <Checkbox defaultChecked size="small"
+                                  checked={navakrobtrain}
+                                  onChange={handleChangenavakrobtrain}
+                        />
+                        <TextField
+                            value={akrob}
                             className="nav_text"
-
+                            variant="standard"
                         />
                         акробатика(лов)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navanaltrain}
+                                  onChange={handleChangenavanaltrain}
+                        />
                         <TextField
-                            value={spascha}
+                            value={analiz}
                             className="nav_text"
                             variant="standard"
                         />
                         анализ(инт)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navatletrain}
+                                  onChange={handleChangenavatletrain}
+                                  />
                         <TextField
-                            value={spascha}
+                            value={atletick}
                             className="nav_text"
                             variant="standard"
                         />
                         атлетика(сил)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navsenstrain}
+                                  onChange={handleChangenavsenstrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={sensor}
                             className="nav_text"
                             variant="standard"
                         />
                         внимание(муд)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navsurvtrain}
+                                  onChange={handleChangenavsurvtrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={survai}
                             className="nav_text"
                             variant="standard"
                         />
                         выжив.(муд)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navshowtrain}
+                                  onChange={handleChangenavshowtrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={show}
                             className="nav_text"
                             variant="standard"
                         />
                         выст.(хар)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navsceatrain}
+                                  onChange={handleChangenavsceatrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={sceary}
                             className="nav_text"
                             variant="standard"
                         />
                         запуг.(хар)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navhisttrain}
+                                  onChange={handleChangenavhisttrain}
+                        />
                         <TextField
-                            value={spascha}
+                            value={history}
                             className="nav_text"
                             variant="standard"
                         />
                         история(инт)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked
+                                  size="small"checked={navlovrtrain}
+                                  onChange={handleChangenavlovrtrain}
+                        />
                         <TextField
-                            value={spascha}
+                            value={lovruk}
                             className="nav_text"
                             variant="standard"
                         />
                         лов. рук(лов)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navmagitrain}
+                                  onChange={handleChangenavmagitrain}/>
                         <TextField
-                            value={spascha}
+                            value={magick}
                             className="nav_text"
                             variant="standard"
                         />
                         магия(инт)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navmeditrain}
+                                  onChange={handleChangenavmeditrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={medic}
                             className="nav_text"
                             variant="standard"
                         />
                         медицина(муд)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navcheatrain}
+                                  onChange={handleChangenavcheatrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={cheat}
                             className="nav_text"
                             variant="standard"
                         />
                         обман(хар)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  size="small"checked={navnatutrain}
+                                  onChange={handleChangenavnatutrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={nature}
                             className="nav_text"
                             variant="standard"
                         />
                         природа(муд)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navprontrain}
+                                  onChange={handleChangenavprontrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={pronic}
                             className="nav_text"
                             variant="standard"
                         />
                         прониц.(муд)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navrelitrain}
+                                  onChange={handleChangenavrelitrain}
+                        />
                         <TextField
-                            value={spascha}
+                            value={religion}
                             className="nav_text"
                             variant="standard"
                         />
                         религия(инт)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navsteltrain}
+                                  onChange={handleChangenavsteltrain}
+                        />
                         <TextField
-                            value={spascha}
+                            value={stels}
                             className="nav_text"
                             variant="standard"
                         />
                         скрыт(лов)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navopintrain}
+                                  onChange={handleChangenavopintrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={opinion}
                             className="nav_text"
                             variant="standard"
                         />
                         убежд.(хар)
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small" />
+                        <Checkbox defaultChecked size="small"
+                                  checked={navbeastrain}
+                                  onChange={handleChangenavbeastrain}
+                        />
                         <TextField
-                            value={spascha}
+                             value={beast}
                             className="nav_text"
                             variant="standard"
                         />
