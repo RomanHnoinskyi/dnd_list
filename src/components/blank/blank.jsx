@@ -1,10 +1,11 @@
 import React from 'react';
-import { Checkbox, Input, MenuItem, Radio, TextField} from "@mui/material";
+import {Button, Checkbox, MenuItem, Radio, TextField} from "@mui/material";
 import "./blank.css"
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import {instruments, klass, langs, rassas} from "../../assets/constant/constant";
+
 
 
 const Blank = () => {
@@ -14,14 +15,23 @@ const Blank = () => {
     const [lang, setLang] = React.useState('общий')
     const [instrument, setInstrument] = React.useState('пивовара')
     const [selectedValue, setSelectedValue] = React.useState();
-    const [strength, setStrength] = React.useState()
-    const [constitution, setConstitution] = React.useState()
-    const [dexterity, setDexterity] = React.useState()
-    const [wisdom, setWisdom] = React.useState()
-    const [intelligence, setIntelligence] = React.useState()
-    const [charisma, setCharisma] = React.useState()
+    const [strength, setStrength] = React.useState( 10)
+    const [constitution, setConstitution] = React.useState(10)
+    const [dexterity, setDexterity] = React.useState(10)
+    const [wisdom, setWisdom] = React.useState(10)
+    const [intelligence, setIntelligence] = React.useState(10)
+    const [charisma, setCharisma] = React.useState(10)
     const [BM, setBM] = React.useState(2)
     const [level, setLevel] = React.useState(1)
+
+
+    let  modStrength = Math.floor((strength -10)/2)
+    let  modConstitution = Math.floor((constitution -10)/2)
+    let  modDexterity = Math.floor((dexterity -10)/2)
+    let  modWisdom = Math.floor((wisdom -10)/2)
+    let  modIntelligence = Math.floor((intelligence -10)/2)
+    let  modCharisma = Math.floor((charisma -10)/2)
+
     const [spasstrtrain, setspasstrtrain] = React.useState(false);
     const [spascotrain, setspascotrain] = React.useState(false);
     const [spasdextrain, setspasdextrain] = React.useState(false);
@@ -32,7 +42,7 @@ const Blank = () => {
     const [navakrobtrain, setnavakrobtrain] = React.useState(false);
     const [navlovrtrain, setnavlovrtrain] = React.useState(false);
     const [navsteltrain, setnavsteltrain] = React.useState(false);
-    const [navanaltrain, setnavanaltrain] = React.useState(false);
+    const [navanaltrain, setnavanaltrain] = React.useState(true);
     const [navhisttrain, setnavhisttrain] = React.useState(false);
     const [navmagitrain, setnavmagitrain] = React.useState(false);
     const [navrelitrain, setnavrelitrain] = React.useState(false);
@@ -144,14 +154,6 @@ const Blank = () => {
     };
 
 
-
-        let  modStrength = Math.floor((strength -10)/2)
-        let  modConstitution = Math.floor((constitution -10)/2)
-        let  modDexterity = Math.floor((dexterity -10)/2)
-        let  modWisdom = Math.floor((wisdom -10)/2)
-        let  modIntelligence = Math.floor((intelligence -10)/2)
-        let  modCharisma = Math.floor((charisma -10)/2)
-
         let spasstr = modStrength + (BM*spasstrtrain)
         let spascon = modConstitution + (BM*spascotrain)
         let spasdex = modDexterity + (BM*spasdextrain)
@@ -184,7 +186,12 @@ const Blank = () => {
          let opinion = modCharisma + BM*navopintrain              //убеждение
 
 
+function chekspas () {
 
+  let ran =   Math.floor(Math.random()*20)+1
+    // res = ran + this.props.
+    return alert(ran)
+}
 
 
 
@@ -248,7 +255,9 @@ const Blank = () => {
             <div className="col">
                 <div className="blank_statistic">
                     <div className="cell">
-                        сила
+                        <Button variant="text" onClick={ chekspas  }>
+                            сила
+                        </Button>
                         <h1> {modStrength}</h1>
                         <TextField
                             id="strength"
@@ -259,11 +268,13 @@ const Blank = () => {
                             defaultValue="10"
                             type="number"
                         >
-
                         </TextField>
                     </div>
                     <div className="cell">
-                        тело
+                        <Button variant="text" onClick={ chekspas }>
+                            тело
+                        </Button>
+
                         <h1> {modConstitution}</h1>
                         <TextField
                             id="constitution"
@@ -278,7 +289,10 @@ const Blank = () => {
                         </TextField>
                     </div>
                     <div className="cell">
-                        ловкость
+                        <Button variant="text" onClick={ chekspas }>
+                            ловкость
+                        </Button>
+
                         <h1> {modDexterity}</h1>
                         <TextField
                             value={dexterity}
@@ -293,7 +307,10 @@ const Blank = () => {
                         </TextField>
                     </div>
                     <div className="cell">
-                        мудрость
+                        <Button variant="text" onClick={ chekspas }>
+                            мудрость
+                        </Button>
+
                         <h1> {modWisdom}</h1>
                         <TextField
                             id="wisdom"
@@ -308,7 +325,10 @@ const Blank = () => {
                         </TextField>
                     </div>
                     <div className="cell">
-                        интелект
+                        <Button variant="text" onClick={ chekspas }>
+                            интелект
+                        </Button>
+
                         <h1> {modIntelligence}</h1>
                         <TextField
                             value={intelligence}
@@ -323,7 +343,10 @@ const Blank = () => {
                         </TextField>
                     </div>
                     <div className="cell">
-                        харизма
+                        <Button variant="text" onClick={ chekspas }>
+                            харизма
+                        </Button>
+
                         <h1> {modCharisma}</h1>
                         <TextField
                             value={charisma}
@@ -384,72 +407,74 @@ const Blank = () => {
                             onChange={handleChangespasstrtrain}
                             defaultChecked size="small"
                         />
-                        <TextField
-                            value={spasstr}
-                            className="spas_text"
-                            variant="standard"
-                        />
-                        сила
+                        <span
+                        >
+                            {spasstr}
+                        </span>
+                        <Button variant="text" onClick={ chekspas }>
+                            сила
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={spascotrain}
                                   onChange={handleChangespascotrain}
                         />
-                        <TextField
-                            value={spascon}
-                            className="spas_text"
-                            variant="standard"
-                        />
-                        тело
+                        <span>{spascon}</span>
+
+                        <Button variant="text" onClick={ chekspas }>
+                            тело
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={spasdextrain}
                                   onChange={handleChangespasdextrain}
                         />
-                        <TextField
-                            value={spasdex}
-                            className="spas_text"
-                            variant="standard"
-                        />
-                        ловкость
+                        <span>{spasdex}</span>
+
+                        <Button variant="text" onClick={ chekspas }>
+                            ловкость
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={spasinttrain}
                                   onChange={handleChangespasinttrain}
                         />
-                        <TextField
-                            value={spasint}
-                            className="spas_text"
-                            variant="standard"
-                        />
-                        интелект
+                        <span>
+                            {spasint}
+                        </span>
+                        <Button variant="text" onClick={ chekspas }>
+                            интелект
+                        </Button>
+
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={spaswistrain}
                                   onChange={handleChangespaswistrain}
                         />
-                        <TextField
-                            value={spaswis}
-                            className="spas_text"
-                            variant="standard"
-                        />
-                        мудрость
+                        <span>
+                            {spaswis}
+                        </span>
+
+                        <Button variant="text" onClick={ chekspas }>
+                            мудрость
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={spaschatrain}
                                   onChange={handleChangespaschatrain}
                         />
-                        <TextField
-                            value={spascha}
-                            className="spas_text"
-                            variant="standard"
-                        />
-                        харизма
+                        <span>
+                            {spascha}
+                        </span>
+                        <Button variant="text" onClick={ chekspas }>
+                            харизма
+                        </Button>
+
                     </div>
 
                 </div>
@@ -460,215 +485,289 @@ const Blank = () => {
                                   checked={navakrobtrain}
                                   onChange={handleChangenavakrobtrain}
                         />
-                        <TextField
-                            value={akrob}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        акробатика(лов)
+                        <span>
+                            {akrob}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            акробатика(л)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navanaltrain}
                                   onChange={handleChangenavanaltrain}
                         />
-                        <TextField
-                            value={analiz}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        анализ(инт)
+                        <span>
+                            {analiz}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            анализ(и)
+                        </Button>
                     </div>
                     <div>
-                        <Checkbox defaultChecked size="small"
-                                  size="small"checked={navatletrain}
+                        <Checkbox defaultChecked
+                                  size="small"
+                                  checked={navatletrain}
                                   onChange={handleChangenavatletrain}
                                   />
-                        <TextField
-                            value={atletick}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        атлетика(сил)
+                        <span>
+                            {atletick}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            атлетика(с)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navsenstrain}
+                                  checked={navsenstrain}
                                   onChange={handleChangenavsenstrain}
                         />
-                        <TextField
-                             value={sensor}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        внимание(муд)
+                        <span>
+                            {sensor}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            внимание(м)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navsurvtrain}
+                                  checked={navsurvtrain}
                                   onChange={handleChangenavsurvtrain}
                         />
-                        <TextField
-                             value={survai}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        выжив.(муд)
+                        <span>
+                            {survai}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            выжив.(м)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navshowtrain}
+                                  checked={navshowtrain}
                                   onChange={handleChangenavshowtrain}
                         />
-                        <TextField
-                             value={show}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        выст.(хар)
+                        <span>
+                            {show}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            выст.(х)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navsceatrain}
+                                  checked={navsceatrain}
                                   onChange={handleChangenavsceatrain}
                         />
-                        <TextField
-                             value={sceary}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        запуг.(хар)
+                        <span>
+                            {sceary}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            запуг.(х)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navhisttrain}
                                   onChange={handleChangenavhisttrain}
                         />
-                        <TextField
-                            value={history}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        история(инт)
+                        <span>
+                            {history}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            история(и)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked
-                                  size="small"checked={navlovrtrain}
+                                  checked={navlovrtrain}
                                   onChange={handleChangenavlovrtrain}
                         />
-                        <TextField
-                            value={lovruk}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        лов. рук(лов)
+                        <span>
+                            {lovruk}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            лов. рук(л)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navmagitrain}
-                                  onChange={handleChangenavmagitrain}/>
-                        <TextField
-                            value={magick}
-                            className="nav_text"
-                            variant="standard"
+                                  checked={navmagitrain}
+                                  onChange={handleChangenavmagitrain}
                         />
-                        магия(инт)
+                        <span>
+                            {magick}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            магия(и)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navmeditrain}
+                                  checked={navmeditrain}
                                   onChange={handleChangenavmeditrain}
                         />
-                        <TextField
-                             value={medic}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        медицина(муд)
+                        <span>
+                            {medic}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            медицина(м)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navcheatrain}
                                   onChange={handleChangenavcheatrain}
                         />
-                        <TextField
-                             value={cheat}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        обман(хар)
+                        <span>
+                            {cheat}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            обман(х)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
-                                  size="small"checked={navnatutrain}
+                                  checked={navnatutrain}
                                   onChange={handleChangenavnatutrain}
                         />
-                        <TextField
-                             value={nature}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        природа(муд)
+                        <span>
+                            {nature}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            природа(м)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navprontrain}
                                   onChange={handleChangenavprontrain}
                         />
-                        <TextField
-                             value={pronic}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        прониц.(муд)
+                        <span>
+                            {pronic}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            прониц.(м)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navrelitrain}
                                   onChange={handleChangenavrelitrain}
                         />
-                        <TextField
-                            value={religion}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        религия(инт)
+                        <span>
+                            {religion}
+                        </span>
+                        <Button
+                            variant="text"
+                            size="small"
+                            onClick={ chekspas }
+                        >
+                            религия(и)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navsteltrain}
                                   onChange={handleChangenavsteltrain}
                         />
-                        <TextField
-                            value={stels}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        скрыт(лов)
+                        <span>
+                            {stels}
+                        </span>
+                        <Button
+                            size="small"
+                            variant="text"
+                            onClick={ chekspas }
+                        >
+                            скрыт(л)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navopintrain}
                                   onChange={handleChangenavopintrain}
                         />
-                        <TextField
-                             value={opinion}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        убежд.(хар)
+                        <span>
+                           { opinion }
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            убежд.(х)
+                        </Button>
                     </div>
                     <div>
                         <Checkbox defaultChecked size="small"
                                   checked={navbeastrain}
                                   onChange={handleChangenavbeastrain}
                         />
-                        <TextField
-                             value={beast}
-                            className="nav_text"
-                            variant="standard"
-                        />
-                        у.животн.(муд)
+                        <span>
+                            {beast}
+                        </span>
+                        <Button
+                            variant="text"
+                            onClick={ chekspas }
+                            size="small"
+                        >
+                            у.животн.(м)
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -688,25 +787,34 @@ const Blank = () => {
                         defaultValue="2"
                         type="number"
                     >
-
                     </TextField>
                 </div>
                 <div className="stat">
-                  <h7>Вдохновение</h7>
+                  <span>
+                      Вдохнов.
+                  </span>
                     <p><Checkbox size="small" ></Checkbox></p>
                 </div>
-                <div className="stat">
-                   <h7>КД</h7>
-                    <p>11</p>
-                </div>
-                <div className="stat">
-                   <h7>Инициатива</h7>
-                    <p>{modDexterity}</p>
-                </div>
-                <div className="stat">
-                   <h7>Скорость</h7>
-                    <p>30</p>
-                </div>
+              <div className="blank_row">
+                  <div className="stat">
+                      <h7>КД</h7>
+                      <p>11</p>
+                  </div>
+                  <div className="stat">
+                      <Button
+                          variant="text"
+                          size="small"
+                          onClick={ chekspas }
+                      >
+                          Инициатива
+                      </Button>
+                      <p>{modDexterity}</p>
+                  </div>
+                  <div className="stat">
+                      <h7>Скорость</h7>
+                      <p>30</p>
+                  </div>
+              </div>
 
             </div>
                 <div className="heals">
@@ -717,7 +825,14 @@ const Blank = () => {
 
                     </div>
                     <div>
-                        spas of dead
+                        <Button
+                            variant="text"
+                            size="small"
+                            onClick={ chekspas }
+                        >
+                            spas of dead
+                        </Button>
+
                         <div>
                             success
                             <Radio

@@ -5,14 +5,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './tabs.css'
-import {Button, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Grid} from "@mui/material";
-import warior from '../../assets/img/class/warior.jpg'
-import bard from '../../assets/img/class/bard.jpg'
-import druid from '../../assets/img/class/druid.jpg'
-import paladin from '../../assets/img/class/paladin.jpg'
-import scaut from '../../assets/img/class/scaut.jpg'
-import {NavLink} from "react-router-dom";
-import FullScreenDialog from "../Dialog/Dialog";
+import SetClass from "../../components/librarium/class/set_class";
+
 
 
 function TabPanel(props) {
@@ -56,8 +50,12 @@ export default function VerticalTabs() {
     };
 
     return (
+
         <Box
-            sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 'window' }}
+            sx={{ flexGrow: 1, bgcolor: 'background.paper',
+                display: 'flex',
+                height: 'window'
+        }}
         >
             <Tabs
                 orientation="vertical"
@@ -75,109 +73,17 @@ export default function VerticalTabs() {
                 <Tab label="Item Six" {...a11yProps(5)} />
                 <Tab label="Item Seven" {...a11yProps(6)} />
             </Tabs>
-            <TabPanel value={value} index={0}>
+            <TabPanel
+                value={value}
+                index={0}
+            >
                 <h2> Рассы</h2>
-
             </TabPanel>
-            <TabPanel value={value} index={1}>
-                <h2 className="tabs_class_title" > классы</h2>
-
-    <div className="class_row">
-        <Card  className="game_class">
-
-            <CardContent className="game_class_content"
-                         sx={{ fontSize: 14 }}
+            <TabPanel
+                value={value}
+                index={1}
             >
-                <img className="game_class_image" src={paladin}
-                     alt="paladin"
-                />
-                <b>   PALADIN</b>
-                <p>Вне зависимости от происхождения и миссии,
-                    паладинов объединяет их клятва противостоять силам зла.
-                    Принесённая ли перед алтарём бога и заверенная священником,
-                    или же на священной поляне перед духами природы и феями,
-                    или в момент отчаяния и горя смерти, присяга паладина
-                    — могущественный договор. Это источник силы, который
-                    превращает набожного воина в благослвенного героя.</p>
-
-            </CardContent>
-            <Button variant="contained"><NavLink to='/paladin'>Подробнее</NavLink></Button>
-            {/*//dialog*/}
-        </Card>
-
-
-        <Card  className="game_class">
-
-            <CardContent className="game_class_content" >
-                <img className="game_class_image" src={bard}
-                     alt="bard"
-                />
-                <b>   BARD</b>
-                <p>Неважно, кем является бард: учёным, скальдом или проходимцем;
-                    он плетёт магию из слов и музыки, вдохновляя союзников,
-                    деморализуя противников, манипулируя сознанием,
-                    создавая иллюзии, и даже исцеляя раны.</p>
-
-            </CardContent>
-            <Button
-                variant="contained"
-                color="warning"
-                onClick={() => FullScreenDialog()}
-            >
-                Детально
-            </Button>
-        </Card>
-
-
-        <Card  className="game_class">
-
-            <CardContent className="game_class_content" >
-                <img className="game_class_image" src={scaut}
-                     alt="scaut"
-                />
-                <b>   SCAUT</b>
-                <p>Вдали от суеты городов и посёлков, за изгородями,
-                    которые защищают самые далёкие фермы от ужасов дикой природы,
-                    среди плотно стоящих деревьев, беспутья лесов и на просторах
-                    необъятных равнин следопыты несут свой бесконечный дозор.</p>
-
-            </CardContent>
-            <Button
-                variant="contained"
-                color="warning"
-            >
-                <NavLink to='/librium/class/scaut/scaut.js'>
-                    Подробнее
-                </NavLink>
-            </Button>
-        </Card>
-
-    </div>
-
-                        <Card  className="game_class">
-
-                            <CardContent className="game_class_content" >
-                                <img className="game_class_image" src={druid}
-                                     alt="druid"
-                                />
-                                <b>   DRUID</b>
-                                <p>Призывая стихии или подражая животным,
-                                    друиды воплощают незыблемость, приспособляемость и гнев природы.
-                                    Они ни в коем случае не владыки природы — вместо этого друиды
-                                    ощущают себя частью её неодолимой воли.</p>
-
-                            </CardContent>
-                            <Button
-                                variant="contained"
-                            >
-                                <NavLink to="/librium/paladin"> Подробнее</NavLink>
-                            </Button>
-                        </Card>
-
-
-
-
-
+               <SetClass/>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <h2> Заклинания</h2>
@@ -195,5 +101,6 @@ export default function VerticalTabs() {
                 Item Seven
             </TabPanel>
         </Box>
+
     );
 }

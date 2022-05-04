@@ -1,11 +1,13 @@
 import React from 'react';
+import foto from "../../../../assets/img/class/scaut_main.jpg"
 
-const Scaut = () => {
+const Scout = () => {
     return (
-        <div>
+        <div className="scaut_list" >
+            <img src={foto}/>
             <h2> Scaut wos heare!</h2>
         </div>
     );
 };
 
-export default Scaut;
+export default Scout;

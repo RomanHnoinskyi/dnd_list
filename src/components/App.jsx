@@ -10,9 +10,10 @@ import Disk from "./disk/Disk";
 import Profile from "./profile/Profile";
 import Librium from "./librarium/librium";
 import Paladin from "./librarium/class/paladin/paladin";
-import Scaut from "./librarium/class/scaut/scaut"
+
 import dice from "./dice/Dice";
 import Blank from "./blank/blank";
+import Scout from "./librarium/class/scaut/scaut";
 
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
@@ -37,8 +38,6 @@ function App() {
                             <Route path="/login" component={Login}/>
                             <Route path="/librium" component={Librium}/>
                             <Route path="/dice" component={dice}/>
-                            <Route path="/paladin" component={Paladin}/>
-                            <Route exact path="/librium/class/scaut" component={Scaut}/>
                             <Route path="/blank" component={Blank}/>
                             <Redirect to='/login'/>
                         </Switch>
@@ -48,9 +47,7 @@ function App() {
                             <Route exact path="/profile" component={Profile}/>
                             <Route path="/librium" component={Librium}/>
                             <Route path="/dice" component={dice}/>
-                            <Route path="/paladin" component={Paladin}/>
                             <Route path="/blank" component={Blank}/>
-                            <Route exact path="/librium/class/scaut" component={Scaut}/>
                             <Redirect to="/"/>
                         </Switch>
                     }
