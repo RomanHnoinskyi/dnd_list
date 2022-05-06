@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button} from "@mui/material";
+import {Alert, Button} from "@mui/material";
 import "./dice.css"
 import dic4 from "../../assets/img/dice/d4.svg"
 import dic6 from "../../assets/img/dice/d6.svg"
@@ -16,17 +16,16 @@ const Dice = () => {
     const [count12, setCount12] = useState(1)
     const [count20, setCount20] = useState(1)
     const [count100, setCount100] = useState(1)
-    const [count, setCount] = useState(1)
     const [results, setResults] = useState([])
-    const [sumall, setSumall] = useState(0)
 
-    function inc() {
-            setCount(count+1)
+
+    function inc(count, setCount) {
+        setCount(count+1)
     }
-    function dec () {
-            setCount(count-1)
+    function dec (count, setCount) {
+        setCount(count-1)
     }
-    function res () {
+    function res (setCount) {
         setCount(1)
         setResults([])
     }
@@ -49,13 +48,13 @@ const Dice = () => {
        return  sumall
     }
 
-    function check(count, n) {
-      alert ( XdY(count, n));
-        alert(fun(results))
-        res()
+    function check(count, setCount, n) {
+         alert (`Значение кубов: ${XdY(count, n)}`);
+         if (count > 1) {
+             alert (`Сумма: ${fun(results)}`)
+         }
+         res(setCount)
     }
-
-
 
     return (
         <div className="dice_container">
@@ -66,27 +65,29 @@ const Dice = () => {
                      src={dic4}
                      alt="dice 4"
                 />
-                {count}
+                {count4}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={() => inc()}
+                        onClick={() => inc(count4, setCount4)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={() => dec()}
+                        onClick={() => dec(count4, setCount4)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount4)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={() => check(count, 4)}
-                >Roll</Button>
+                        onClick={() => check(count4, setCount4, 4)}
+                >
+                    Roll
+                </Button>
             </div>
             <div className="dice_dice">
                 D6
@@ -94,28 +95,28 @@ const Dice = () => {
                      src={dic6}
                      alt="dice 6"
                 />
-                {count}
+                {count6}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={inc}
+                        onClick={() => inc(count6, setCount6)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={dec}
+                        onClick={() => dec(count6, setCount6)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount6)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={() => check(count, 6)}
+                        onClick={() => check(count6, setCount6, 6)}
                 >
-                    Push
+                    Roll
                 </Button>
             </div>
             <div className="dice_dice">
@@ -124,27 +125,29 @@ const Dice = () => {
                      src={dic8}
                      alt="dice 8"
                 />
-                {count}
+                {count8}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={inc}
+                        onClick={() => inc(count8, setCount8)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={dec}
+                        onClick={() => dec(count8, setCount8)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount8)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={() => check(count, 8)}
-                >Push</Button>
+                        onClick={() => check(count8, setCount8, 8)}
+                >
+                    Roll
+                </Button>
             </div>
             <div className="dice_dice">
                 D10
@@ -152,28 +155,28 @@ const Dice = () => {
                      src={dic10}
                      alt="dice 10"
                 />
-                {count}
+                {count10}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={inc}
+                        onClick={() => inc(count10, setCount10)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={dec}
+                        onClick={() => dec(count10, setCount10)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount10)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={() => check(count, 10)}
+                        onClick={() => check(count10, setCount10, 10)}
                 >
-                    Push
+                    Roll
                 </Button>
             </div>
             <div className="dice_dice">
@@ -182,28 +185,28 @@ const Dice = () => {
                      src={dic12}
                      alt="dice 12"
                 />
-                {count}
+                {count12}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={inc}
+                        onClick={() => inc(count12, setCount12)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={dec}
+                        onClick={() => dec(count12, setCount12)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount12)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={()=> check(count, 12)}
+                        onClick={()=> check(count12, setCount12, 12)}
                 >
-                    Push
+                    Roll
                 </Button>
             </div>
             <div className="dice_dice">
@@ -212,27 +215,29 @@ const Dice = () => {
                      src={dic20}
                      alt="dice 20"
                 />
-                {count}
+                {count20}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={inc}
+                        onClick={() => inc(count20, setCount20)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={dec}
+                        onClick={() => dec(count20, setCount20)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount20)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={() => check(count, 20)}
-                >Push</Button>
+                        onClick={() => check(count20, setCount20, 20)}
+                >
+                    Roll
+                </Button>
             </div>
             <div className="dice_dice">
                 D100
@@ -240,57 +245,28 @@ const Dice = () => {
                      src={dic10}
                      alt="dice 100"
                 />
-                {count}
+                {count100}
                 <div>
                     <Button
                         variant="contained"
                         color="success"
-                        onClick={inc}
+                        onClick={() => inc(count100, setCount100)}
                     >+</Button>
                     <Button
                         variant="contained"
                         color="error"
-                        onClick={dec}
+                        onClick={() => dec(count100, setCount100)}
                     >-</Button>
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={res}
+                        onClick={() => res(setCount100)}
                     >res</Button>
                 </div>
                 <Button variant="outlined"
-                        onClick={() => check(count, 100)}
-                >Push</Button>
-            </div>
-            <div className="dice_dice">
-                D
-                <img className="icons_dice"
-                     src={dic10}
-                     alt="dice 100"
-                />
-                {count}
-                <div>
-                    <Button
-                        variant="contained"
-                        color="success"
-                        onClick={inc}
-                    >+</Button>
-                    <Button
-                        variant="contained"
-                        color="error"
-                        onClick={dec}
-                    >-</Button>
-                    <Button
-                        variant="contained"
-                        color="warning"
-                        onClick={res}
-                    >res</Button>
-                </div>
-                <Button
-                    variant="outlined"
-                    onClick={() => check(count, 20)}
+                        onClick={() => check(count100, setCount100, 100)}
                 >
-                    Push
+                    Roll
                 </Button>
             </div>
         </div>
