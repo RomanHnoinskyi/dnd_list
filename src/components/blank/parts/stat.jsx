@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, TextField} from "@mui/material";
 import '../blank.css';
-
+import {push} from "./function";
 
 
 const Stat = ( {mod, stat, name, setStat}) => {
@@ -9,7 +9,7 @@ const Stat = ( {mod, stat, name, setStat}) => {
         <div className="cell">
         <Button
             variant="text"
-            // onClick={() => push(mod, `'Проверка '${name}`)}
+            onClick={() => push(mod, `'Проверка '${name}`)}
         >
             {name}
         </Button>

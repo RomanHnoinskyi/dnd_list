@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Checkbox} from "@mui/material";
 import '../blank.css'
+import {push} from "./function";
 
 const Parametr = ({name, value, cheks, change}) => {
     return (
@@ -12,7 +13,7 @@ const Parametr = ({name, value, cheks, change}) => {
                 <span>{value}</span>
             <Button
                 variant="text"
-                // onClick={() => push(value, "Спасбросок ловкости")}
+                onClick={() => push(value, "Спасбросок ловкости")}
             >
                 {name}
             </Button>

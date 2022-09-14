@@ -9,7 +9,16 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Stat from "./parts/stat";
 import Parametr from "./parts/parametr";
 import Money from "./parts/money";
+import {chekspas} from "./parts/function";
 
+
+// export function chekspas (n) {
+//     return  Math.floor(Math.random()*20)+1 + n
+//     // return alert(ran)
+// }
+// export function push( n, text) {
+//     alert(`${text}  ${chekspas(n)}`)
+// }
 
 const Blank = () => {
 
@@ -195,13 +204,7 @@ const Blank = () => {
             speed = 25
     }
 
-     function chekspas (n) {
-        return  Math.floor(Math.random()*20)+1 + n
-        // return alert(ran)
-    }
-      function push( n, text) {
-        alert(`${text}  ${chekspas(n)}`)
-    }
+
 
 
     return (
