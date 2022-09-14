@@ -7,8 +7,14 @@
 .blank_bio {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     border: #506a8f solid 2px;
     border-radius: 10px;
+}
+.baz {
+    border: #506a8f solid 2px;
+    border-radius: 10px;
+    width: 70%;
 }
 .blank_row {
     display: flex;
@@ -27,7 +33,10 @@
     border: #506a8f solid 2px;
     border-radius: 10px;
     margin: 5px;
-
+}
+.blank_head {
+    display: flex;
+    flex-direction: column;
 }
 .blank_statistic_small {
 display: flex;
@@ -107,4 +116,11 @@ display: flex;
 }
 .nav_text {
     width: 20px;
+}
+.text_tit {
+    text-align: center;
+}
+.grab {
+    width: 30px;
+    height: 30px;
 }

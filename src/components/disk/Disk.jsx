@@ -64,11 +64,16 @@ const Disk = () => {
     }
 
     return ( !dragEnter ?
-            <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
+            <div
+                className="disk"
+                onDragEnter={dragEnterHandler}
+                onDragLeave={dragLeaveHandler}
+                onDragOver={dragEnterHandler}>
                 <div className="disk__btns">
                     <Button
                         variant="outlined"
                         startIcon={<ArrowBack />}
+                        size="small"
                         onClick={() => backClickHandler()}
                     >
                         Назад
@@ -76,12 +81,18 @@ const Disk = () => {
                     <Button
                         variant="outlined"
                         startIcon={<AddCircleOutline/>}
+                        size="small"
                         onClick={() => showPopupHandler()}
                     >
                         Создать папку
                     </Button>
                     <div className="disk__upload">
-                        <label htmlFor="disk__upload-input" className="disk__upload-label">Загрузить файл</label>
+                        <label
+                            htmlFor="disk__upload-input"
+                            className="disk__upload-label"
+                        >
+                            Загрузить файл
+                        </label>
                         <input multiple={true}
                                onChange={(event)=> fileUploadHandler(event)}
                                type="file"
@@ -98,10 +109,12 @@ const Disk = () => {
                     </Select>
                     <Button
                         className="disk__plate"
+                        size="small"
                         onClick={() => dispatch(setFileView('plate'))}
                     />
                     <Button
                         className="disk__list"
+                        size="small"
                         onClick={() => dispatch(setFileView('list'))}
                     />
                 </div>

@@ -5,24 +5,28 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import {instruments, klass, langs, rassas} from "../../assets/constant/constant";
-
+import SettingsIcon from '@mui/icons-material/Settings';
+import Stat from "./parts/stat";
+import Parametr from "./parts/parametr";
+import Money from "./parts/money";
 
 
 const Blank = () => {
 
-    const [rassa, setRassa] = React.useState('человек');
-    const [clas, setClas] = React.useState('бард');
-    const [lang, setLang] = React.useState('общий')
-    const [instrument, setInstrument] = React.useState('пивовара')
+    const [rassa, setRassa] = React.useState('человек');             //рассы
+    const [clas, setClas] = React.useState('бард');                 //классы
+    const [lang, setLang] = React.useState('общий')                  //языки
+    const [instrument, setInstrument] = React.useState('пивовара')      //инструменты
     const [selectedValue, setSelectedValue] = React.useState();
-    const [strength, setStrength] = React.useState( 10)
-    const [constitution, setConstitution] = React.useState(10)
-    const [dexterity, setDexterity] = React.useState(10)
-    const [wisdom, setWisdom] = React.useState(10)
-    const [intelligence, setIntelligence] = React.useState(10)
-    const [charisma, setCharisma] = React.useState(10)
-    const [BM, setBM] = React.useState(2)
-    const [level, setLevel] = React.useState(1)
+    const [strength, setStrength] = React.useState( 10)             //сила
+    const [constitution, setConstitution] = React.useState(10)      //телосложение
+    const [dexterity, setDexterity] = React.useState(10)            //ловкость
+    const [wisdom, setWisdom] = React.useState(10)                  //мудрость
+    const [intelligence, setIntelligence] = React.useState(10)      //интелект
+    const [charisma, setCharisma] = React.useState(10)              //харизма
+    const [BM, setBM] = React.useState(2)                           //бонус мастерства
+    const [level, setLevel] = React.useState(1)                     //уровень
+
 
 
     let  modStrength = Math.floor((strength -10)/2)
@@ -58,8 +62,13 @@ const Blank = () => {
     const [navcheatrain, setnavcheatrain] = React.useState(false);
     const [navopintrain, setnavopintrain] = React.useState(false);
 
-
     const [expiriens, setExpiriens] = React.useState(0)
+
+    const [mm, setMm] = React.useState(0)                           //медные монеты
+    const [sm, setSm] = React.useState(0)                           //серебряные монеты
+    const [em, setEm] = React.useState(0)                            //электрумовые монеты
+    const [gm, setGm] = React.useState(0)                           //золотые монеты
+    const [pm, setPm] = React.useState(0)                           //платиновые монеты
 
     const handleChangespascotrain  = (event) => {
         setspascotrain(event.target.checked);
@@ -134,9 +143,6 @@ const Blank = () => {
     const handleChangenavopintrain  = (event) => {
         setnavopintrain(event.target.checked);
     };
-
-
-
     const handleChangeras = (event) => {
         setRassa(event.target.value);
     };
@@ -152,217 +158,135 @@ const Blank = () => {
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
-
-
+        //спасброски
         let spasstr = modStrength + (BM*spasstrtrain)
         let spascon = modConstitution + (BM*spascotrain)
         let spasdex = modDexterity + (BM*spasdextrain)
         let spasint = modIntelligence + (BM*spasinttrain)
         let spaswis = modWisdom + (BM*spaswistrain)
         let spascha = modCharisma + (BM*spaschatrain)
-
-
+        // навыки
         let akrob = modDexterity +BM*navakrobtrain                   //акробатика
         let lovruk = modDexterity + BM*navlovrtrain                  //ловкость рук
         let stels = modDexterity + BM*navsteltrain                   //скрытность
-
          let analiz = modIntelligence + BM*navanaltrain              //анализ
          let history = modIntelligence  + BM*navhisttrain           //история
          let magick = modIntelligence + BM*navmagitrain           //магия
          let religion = modIntelligence + BM*navrelitrain         //религия
-
          let atletick = modStrength + BM*navatletrain             //атлетика
-
          let sensor = modWisdom + BM*navsenstrain                 //внимание
          let survai = modWisdom + BM*navsurvtrain                  //выживание
          let medic = modWisdom + BM*navmeditrain                  //медицына
          let nature = modWisdom + BM*navnatutrain                 //природа
          let pronic = modWisdom + BM*navprontrain                 //проницательность
          let beast = modWisdom + BM*navbeastrain                  //уход за животными
-
          let show = modCharisma + BM*navshowtrain                  //выступление
          let sceary = modCharisma + BM*navsceatrain               // запугивание
          let cheat = modCharisma + BM*navcheatrain                 //обман
          let opinion = modCharisma + BM*navopintrain              //убеждение
 
 
-function chekspas () {
 
-  let ran =   Math.floor(Math.random()*20)+1
-    // res = ran + this.props.
-    return alert(ran)
-}
+    let speed = 0
 
+    if (rassa == 'человек' || 'тифлинг' || 'полуорк' || 'кованный' || 'драконорожденный' || 'эльф' ) {
+            speed = 30
+    } else {
+            speed = 25
+    }
+
+     function chekspas (n) {
+        return  Math.floor(Math.random()*20)+1 + n
+        // return alert(ran)
+    }
+      function push( n, text) {
+        alert(`${text}  ${chekspas(n)}`)
+    }
 
 
     return (
         <div className="blank">
-            <div className="blank_bio">Лист персонажа
-                <div className="">
-                    <TextField id="standard-basic" variant="standard" />
-                    <TextField
-                        id="standard-select-currency"
-                        select
-                        label="расса"
-                        value={rassa}
-                        onChange={handleChangeras}
-                        helperText="Выберете рассу"
-                        variant="standard"
-                    >
-                        {rassas.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <TextField
-                        id="standard-select-currency-native"
-                        select
-                        label="класс"
-                        value={clas}
-                        onChange={handleChangeklas}
-                        helperText="Выберете класс"
-                        variant="standard"
-                    >
-                        {klass.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </div>
+            <div className="blank_bio">
                 <div>
-                    <TextField
-                       value = {level}
-                        label="Уровень"
-                        type="number"
-                        variant="standard"
-                    >
-                        Уровень
-                    </TextField>
-                    <TextField
-                        id="expiriens"
-                        label="Опыт"
-                        type="number"
-                        variant="standard"
-                        value={expiriens}
-                    >
-                        Опыт
-                    </TextField>
+                    <h4>
+                        Лист персонажа
+                    </h4>
                 </div>
+                <div className="col baz">
+                    <div className="blank_row" >
+                        <h3>
+                            Имя персонажа:
+                        </h3>
+                        <TextField id="standard-basic" variant="standard" />
+                        <TextField
+                            id="standard-select-currency"
+                            select
+                            label="расса"
+                            value={rassa}
+                            onChange={handleChangeras}
+                            variant="standard"
+                        >
+                            {rassas.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField
+                            id="standard-select-currency-native"
+                            select
+                            label="класс"
+                            value={clas}
+                            onChange={handleChangeklas}
+                            variant="standard"
+                        >
+                            {klass.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <IconButton aria-label="delete">
+                            <SettingsIcon />
+                        </IconButton>
+                    </div>
+                    <div className="blank_row">
+                        <TextField
+                            value = {level}
+                            label="Уровень"
+                            type="number"
+                            variant="standard"
+                        >
+                            Уровень
+                        </TextField>
+                        <TextField
+                            id="expiriens"
+                            label="Опыт"
+                            type="number"
+                            variant="standard"
+                            value={expiriens}
+                        >
+                            Опыт
+                        </TextField>
+                    </div>
+                </div>
+
             </div>
         <div className="blank_row">
             <div className="col">
                 <div className="blank_statistic">
-                    <div className="cell">
-                        <Button variant="text" onClick={ chekspas  }>
-                            сила
-                        </Button>
-                        <h1> {modStrength}</h1>
-                        <TextField
-                            id="strength"
-                            value={strength}
-                            onChange={e => setStrength(e.target.value)}
-                            className="stat_text"
-                            size="small"
-                            defaultValue="10"
-                            type="number"
-                        >
-                        </TextField>
-                    </div>
-                    <div className="cell">
-                        <Button variant="text" onClick={ chekspas }>
-                            тело
-                        </Button>
-
-                        <h1> {modConstitution}</h1>
-                        <TextField
-                            id="constitution"
-                            value={constitution}
-                            onChange={e => setConstitution(e.target.value)}
-                            className="stat_text"
-                            size="small"
-                            defaultValue="10"
-                            type="number"
-                        >
-
-                        </TextField>
-                    </div>
-                    <div className="cell">
-                        <Button variant="text" onClick={ chekspas }>
-                            ловкость
-                        </Button>
-
-                        <h1> {modDexterity}</h1>
-                        <TextField
-                            value={dexterity}
-                            id="dexterity"
-                            onChange={e => setDexterity(e.target.value)}
-                            className="stat_text"
-                            size="small"
-                            defaultValue="10"
-                            type="number"
-                        >
-
-                        </TextField>
-                    </div>
-                    <div className="cell">
-                        <Button variant="text" onClick={ chekspas }>
-                            мудрость
-                        </Button>
-
-                        <h1> {modWisdom}</h1>
-                        <TextField
-                            id="wisdom"
-                            value={wisdom}
-                            onChange={e => setWisdom(e.target.value) }
-                            className="stat_text"
-                            size="small"
-                            defaultValue="10"
-                            type="number"
-                        >
-
-                        </TextField>
-                    </div>
-                    <div className="cell">
-                        <Button variant="text" onClick={ chekspas }>
-                            интелект
-                        </Button>
-
-                        <h1> {modIntelligence}</h1>
-                        <TextField
-                            value={intelligence}
-                            onChange={e => setIntelligence(e.target.value) }
-                            id="intelligence"
-                            className="stat_text"
-                            size="small"
-                            defaultValue="14"
-                            type="number"
-                        >
-
-                        </TextField>
-                    </div>
-                    <div className="cell">
-                        <Button variant="text" onClick={ chekspas }>
-                            харизма
-                        </Button>
-
-                        <h1> {modCharisma}</h1>
-                        <TextField
-                            value={charisma}
-                            onChange={e => setCharisma(e.target.value) }
-                            id="charisma"
-                            className="stat_text"
-                            size="small"
-                            defaultValue="10"
-                            type="number"
-                        >
-                        </TextField>
-                    </div>
+                    <Stat  name='сила' mod={modStrength} stat={strength} setStat={setStrength}/>
+                    <Stat  name='тело' mod={modConstitution} stat={constitution} setStat={setConstitution}/>
+                    <Stat  name='ловкость' mod={modDexterity} stat={dexterity} setStat={setDexterity}/>
+                    <Stat  name='мудрость' mod={modWisdom} stat={wisdom} setStat={setWisdom}/>
+                    <Stat  name='интелект' mod={modIntelligence} stat={intelligence} setStat={setIntelligence}/>
+                    <Stat  name='харизма' mod={modCharisma} stat={charisma} setStat={setCharisma}/>
                 </div>
                 <div className="lang">
                     <div className="col">
-                        языки
+                       <h4 className="text_tit">
+                           языки
+                       </h4>
                         <TextField
                             id="standard-select-currency"
                             select
@@ -378,7 +302,9 @@ function chekspas () {
                         </TextField>
                     </div>
                     <div className="col">
-                        инструменты
+                        <h3 className="text_tit">
+                            инструменты
+                        </h3>
                         <TextField
                             id="standard-select-currency"
                             select
@@ -395,380 +321,41 @@ function chekspas () {
                     </div>
                 </div>
             </div>
-
-
         <div className="blank_statistic_tabs">
             <div>
                 <div className="spas">
-                    спасы
-                    <div className="blank_row">
-                        <Checkbox
-                            checked={spasstrtrain}
-                            onChange={handleChangespasstrtrain}
-                            defaultChecked size="small"
-                        />
-                        <span
-                        >
-                            {spasstr}
-                        </span>
-                        <Button variant="text" onClick={ chekspas }>
-                            сила
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={spascotrain}
-                                  onChange={handleChangespascotrain}
-                        />
-                        <span>{spascon}</span>
-
-                        <Button variant="text" onClick={ chekspas }>
-                            тело
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={spasdextrain}
-                                  onChange={handleChangespasdextrain}
-                        />
-                        <span>{spasdex}</span>
-
-                        <Button variant="text" onClick={ chekspas }>
-                            ловкость
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={spasinttrain}
-                                  onChange={handleChangespasinttrain}
-                        />
-                        <span>
-                            {spasint}
-                        </span>
-                        <Button variant="text" onClick={ chekspas }>
-                            интелект
-                        </Button>
-
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={spaswistrain}
-                                  onChange={handleChangespaswistrain}
-                        />
-                        <span>
-                            {spaswis}
-                        </span>
-
-                        <Button variant="text" onClick={ chekspas }>
-                            мудрость
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={spaschatrain}
-                                  onChange={handleChangespaschatrain}
-                        />
-                        <span>
-                            {spascha}
-                        </span>
-                        <Button variant="text" onClick={ chekspas }>
-                            харизма
-                        </Button>
-
-                    </div>
-
+                    <h4 className="text_tit">
+                        спасы
+                    </h4>
+                    <Parametr name='сила' value={spasstr} cheks={spasstrtrain} change={handleChangespasstrtrain}/>
+                    <Parametr name='тело' value={spascon} cheks={spascotrain} change={handleChangespascotrain}/>
+                    <Parametr name='ловкость' value={spasdex} cheks={spasdextrain} change={handleChangespasdextrain}/>
+                    <Parametr name='интелект' value={spasint} cheks={spasinttrain} change={handleChangespasinttrain}/>
+                    <Parametr name='мудрость' value={spaswis} cheks={spaswistrain} change={handleChangespaswistrain}/>
+                    <Parametr name='харизма' value={spascha} cheks={spaschatrain} change={handleChangespaschatrain}/>
                 </div>
                 <div className="navik">
-                    навыки
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navakrobtrain}
-                                  onChange={handleChangenavakrobtrain}
-                        />
-                        <span>
-                            {akrob}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            акробатика(л)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navanaltrain}
-                                  onChange={handleChangenavanaltrain}
-                        />
-                        <span>
-                            {analiz}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            анализ(и)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked
-                                  size="small"
-                                  checked={navatletrain}
-                                  onChange={handleChangenavatletrain}
-                                  />
-                        <span>
-                            {atletick}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            атлетика(с)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navsenstrain}
-                                  onChange={handleChangenavsenstrain}
-                        />
-                        <span>
-                            {sensor}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            внимание(м)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navsurvtrain}
-                                  onChange={handleChangenavsurvtrain}
-                        />
-                        <span>
-                            {survai}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            выжив.(м)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navshowtrain}
-                                  onChange={handleChangenavshowtrain}
-                        />
-                        <span>
-                            {show}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            выст.(х)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navsceatrain}
-                                  onChange={handleChangenavsceatrain}
-                        />
-                        <span>
-                            {sceary}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            запуг.(х)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navhisttrain}
-                                  onChange={handleChangenavhisttrain}
-                        />
-                        <span>
-                            {history}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            история(и)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked
-                                  checked={navlovrtrain}
-                                  onChange={handleChangenavlovrtrain}
-                        />
-                        <span>
-                            {lovruk}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            лов. рук(л)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navmagitrain}
-                                  onChange={handleChangenavmagitrain}
-                        />
-                        <span>
-                            {magick}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            магия(и)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navmeditrain}
-                                  onChange={handleChangenavmeditrain}
-                        />
-                        <span>
-                            {medic}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            медицина(м)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navcheatrain}
-                                  onChange={handleChangenavcheatrain}
-                        />
-                        <span>
-                            {cheat}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            обман(х)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navnatutrain}
-                                  onChange={handleChangenavnatutrain}
-                        />
-                        <span>
-                            {nature}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            природа(м)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navprontrain}
-                                  onChange={handleChangenavprontrain}
-                        />
-                        <span>
-                            {pronic}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            прониц.(м)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navrelitrain}
-                                  onChange={handleChangenavrelitrain}
-                        />
-                        <span>
-                            {religion}
-                        </span>
-                        <Button
-                            variant="text"
-                            size="small"
-                            onClick={ chekspas }
-                        >
-                            религия(и)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navsteltrain}
-                                  onChange={handleChangenavsteltrain}
-                        />
-                        <span>
-                            {stels}
-                        </span>
-                        <Button
-                            size="small"
-                            variant="text"
-                            onClick={ chekspas }
-                        >
-                            скрыт(л)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navopintrain}
-                                  onChange={handleChangenavopintrain}
-                        />
-                        <span>
-                           { opinion }
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            убежд.(х)
-                        </Button>
-                    </div>
-                    <div>
-                        <Checkbox defaultChecked size="small"
-                                  checked={navbeastrain}
-                                  onChange={handleChangenavbeastrain}
-                        />
-                        <span>
-                            {beast}
-                        </span>
-                        <Button
-                            variant="text"
-                            onClick={ chekspas }
-                            size="small"
-                        >
-                            у.животн.(м)
-                        </Button>
-                    </div>
+                    <h3 className="text_tit">
+                        навыки
+                    </h3>
+                    <Parametr name='акробатика(л)' value={akrob} cheks={navakrobtrain} change={handleChangenavakrobtrain}/>
+                    <Parametr name='анализ(и)' value={analiz} cheks={navanaltrain} change={handleChangenavanaltrain}/>
+                    <Parametr name='атлетика(с)' value={atletick} cheks={navatletrain} change={handleChangenavatletrain}/>
+                    <Parametr name='внимание(м)' value={sensor} cheks={navsenstrain} change={handleChangenavsenstrain}/>
+                    <Parametr name='выжив.(м)' value={survai} cheks={navsurvtrain} change={handleChangenavsurvtrain}/>
+                    <Parametr name='выст.(х)' value={show} cheks={navshowtrain} change={handleChangenavshowtrain}/>
+                    <Parametr name='запуг.(х)' value={sceary} cheks={navsceatrain} change={handleChangenavsceatrain}/>
+                    <Parametr name=' история(и)' value={history} cheks={navhisttrain} change={handleChangenavhisttrain}/>
+                    <Parametr name=' лов. рук(л)' value={lovruk} cheks={navlovrtrain} change={handleChangenavlovrtrain}/>
+                    <Parametr name='магия(и)' value={magick} cheks={navmagitrain} change={handleChangenavmagitrain}/>
+                    <Parametr name='медицина(м)' value={medic} cheks={navmeditrain} change={handleChangenavmeditrain}/>
+                    <Parametr name='обман(х)' value={cheat} cheks={navcheatrain} change={handleChangenavcheatrain}/>
+                    <Parametr name='природа(м)' value={nature} cheks={navnatutrain} change={handleChangenavnatutrain}/>
+                    <Parametr name='прониц.(м)' value={pronic} cheks={navprontrain} change={handleChangenavprontrain}/>
+                    <Parametr name='религия(и)' value={religion} cheks={navrelitrain} change={handleChangenavrelitrain}/>
+                    <Parametr name=' скрыт(л)' value={stels} cheks={navsteltrain} change={handleChangenavsteltrain}/>
+                    <Parametr name=' убежд.(х)' value={opinion} cheks={navopintrain} change={handleChangenavopintrain}/>
+                    <Parametr name='у.животн.(м)' value={beast} cheks={navbeastrain} change={handleChangenavbeastrain}/>
                 </div>
             </div>
 
@@ -804,7 +391,7 @@ function chekspas () {
                       <Button
                           variant="text"
                           size="small"
-                          onClick={ chekspas }
+                          onClick={ () =>  chekspas(modDexterity) }
                       >
                           Инициатива
                       </Button>
@@ -812,7 +399,7 @@ function chekspas () {
                   </div>
                   <div className="stat">
                       <h7>Скорость</h7>
-                      <p>30</p>
+                      <p>{speed}</p>
                   </div>
               </div>
 
@@ -822,19 +409,18 @@ function chekspas () {
                       <h1>HP : </h1>
                         <TextField
                             variant="standard" />
-
                     </div>
                     <div>
                         <Button
                             variant="text"
                             size="small"
-                            onClick={ chekspas }
+                            onClick={ () => chekspas(0) }
                         >
-                            spas of dead
+                            Спасы от смерти
                         </Button>
 
                         <div>
-                            success
+                            Успех
                             <Radio
                                 checked={selectedValue === 'a'}
                                 onChange={handleChange}
@@ -858,7 +444,7 @@ function chekspas () {
                             />
                         </div>
                         <div>
-                            fail
+                            Провал
                             <Radio
                                 checked={selectedValue === 'd'}
                                 onChange={handleChange}
@@ -884,7 +470,9 @@ function chekspas () {
                     </div>
                 </div>
                 <div className="attack">
-                    <h3>Действия/Атаки</h3>
+                    <h3 className="text_tit">
+                        Действия/Атаки
+                    </h3>
                     <div className="blank_row attack_item">
                         <div>
                             название
@@ -896,66 +484,28 @@ function chekspas () {
                             урон/вид
                         </div>
                     </div>
-
                     <div className="blank_row">
                         <TextField id="" variant="standard" />
                         <TextField id="" variant="standard" />
                         <TextField id="" variant="standard" />
+                        <IconButton aria-label="delete">
+                            <DeleteIcon />
+                        </IconButton>
                     </div>
+                    <IconButton color="primary" aria-label="upload picture" component="span">
+                        <AddCircleOutlineIcon />
+                    </IconButton>
                 </div>
                 <div className="items">
-                    снаряжение
+                    <h3 className="text_tit">
+                        снаряжение
+                    </h3>
                     <div className="blank_row">
-                        <div className="col">
-                            мм
-                            <TextField
-                                className="stat_text"
-                                size="small"
-                                defaultValue=""
-                                type="number"
-                            >
-                            </TextField>
-                        </div>
-                        <div className="col">
-                            см
-                            <TextField
-                                className="stat_text"
-                                size="small"
-                                defaultValue=""
-                                type="number"
-                            >
-                            </TextField>
-                        </div>
-                        <div className="col">
-                            эм
-                            <TextField
-                                className="stat_text"
-                                size="small"
-                                defaultValue=""
-                                type="number"
-                            >
-                            </TextField>
-                        </div>
-                        <div className="col">
-                            зм
-                            <TextField
-                                className="stat_text"
-                                size="small"
-                                defaultValue=""
-                                type="number"
-                            >
-                            </TextField>
-                        </div>
-                        <div className="col">
-                            пм
-                            <TextField
-                                className="stat_text"
-                                size="small"
-                                defaultValue=""
-                                type="number"
-                            >
-                            </TextField>
-                        </div>
+                        <Money name='mm' coin={mm} setCoin={setMm}/>
+                        <Money name='см' coin={sm} setCoin={setSm}/>
+                        <Money name='эм' coin={em} setCoin={setEm}/>
+                        <Money name='зм' coin={gm} setCoin={setGm}/>
+                        <Money name='пм' coin={pm} setCoin={setPm}/>
                     </div>
                     <div>
                         <TextField id="standard-basic" variant="standard" />
@@ -970,14 +520,10 @@ function chekspas () {
                             <DeleteIcon />
                         </IconButton>
                     </div>
-
                 </div>
         </div>
-
         </div>
-
             </div>
-
         </div>
     );
 };

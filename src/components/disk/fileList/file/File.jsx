@@ -35,20 +35,23 @@ function deleteClickHandler(e) {
 if (fileView === 'list') {
     return (
         <div className='file' onClick={() => openDirHandler(file)}>
-            <img src={file.type === 'dir' ? dirLogo : fileLogo} alt="" className="file__img"/>
+            <img
+                src={file.type === 'dir' ? dirLogo : fileLogo}
+                alt="" className="file__img"
+            />
             <div className="file__name">{file.name}</div>
             <div className="file__size">{sizeFormat(file.size)}</div>
             {file.type !== 'dir' &&
                 <Button
                     variant="outlined"
-                    size={"small"}
+                    size="small"
                     onClick={(e) => downloadClickHandler(e)}
                     startIcon={<Download/>}
                 >
                     download
                 </Button>}
             <Button
-                size={"small"}
+                size="small"
                 onClick={(e) => deleteClickHandler(e)}
                 variant="outlined"
                 startIcon={<DeleteIcon/>}
